@@ -1,0 +1,84 @@
+Serialization: 객체의 상태나 자료구조를 통신이나 이동 목적을 위해 장치 독립적인 방식으로 변환하는 기술
+
+메모리 -> 하드디스크(저장)
+하드디스크 -> 메모리(로드)
+프로세스 <-> (data transfer)	//데이터 이동
+computer <-> computer (network programming) //클라이언트 서버간
+
+*
+ObjectOutputStream(Save기능), ObjectInputStream(Load기능), Serializable
+
+ex)
+<Save 기능>
+ex)
+ public void doSave(){   // 파일 save하기
+        try {
+	// 1. 파일이름으로부터 파일 outputStream만들기
+            FileOutputStream fos = new FileOutputStream(mainFrame.fileName);
+	// 2. fileOutputStreame을 ObjectOutputStream으로 변환  
+            ObjectOutputStream oos = new ObjectOutputStream(fos);   
+            oos.writeObject(figures);  
+	// 여기에 가장 핵심적인 정보 저장 (JDrawer에서는 FigureList figures)
+            oos.flush();
+            oos.close();
+            fos.close();
+        } catch (IOException ex) {  //예외처리해줘야함
+        }
+}
+button.addActionListener( (e) -> doSave());
+
+*
+저장할 내용들은 모두 Serializable을 구현해줘야함
+-대부분의 자료구조 클래스들은 Serializable을 구현하고 있음
+-그 자료구조에 들어가는 객체도 Serializable하다고 명시해줘야함
+ex) JDrawer의 Figure클래스
+class Figure implements Serializable{	// implements Serializable만 써주면 됨
+}	
+
+
+
+*도스창에서 serialver 이용해서 버전관리해줘야 클래스내용바꿔도 저장오픈기능 보전가능
+
+
+<Load 기능>
+-파일 open 버튼 눌렀을때
+public void doOpen(){   //Save한 파일 Load해서 Open하기
+        JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));    //chooser라는 dialog생성
+        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);   //chooser속성 file,directory select할수잇고
+        chooser.setDialogType(JFileChooser.OPEN_DIALOG);                //open dialog방식
+        chooser.setFileFilter(new FileNameExtensionFilter("JDrawer file", "jdr"));  //JDrawer파일들이다, extension은 jdr 로 필터링
+        int value = chooser.showOpenDialog(null);   // dialog show
+        if( value != JFileChooser.APPROVE_OPTION) return;   //return버튼이 ok버튼이어야지
+        fileName = chooser.getSelectedFile().getPath();     //file이름 얻어오기
+        canvas.doOpen(fileName);	//load하기, 이부분 직접 코딩
+}
+
+-canvas.doOpen() 실행됐을때
+public void doOpen(String fileName){   // 파일 Load해서 open하기
+        try {
+            FileInputStream fis = new FileInputStream(fileName);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            //자료구조에 load하는 부분 직접 생각해서 적어주기
+            figures = (ArrayList<Figure>) (ois.readObject()); //readObject의 return type은 default로 Object -> typeCasting
+            ois.close();
+            fis.close();
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        }
+    }
+
+
+<다른이름으로 저장 기능 추가> ( 버튼에서 doSaveAs();실행시)
+public void doSaveAs(){   //다른이름으로 저장
+        JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));    //chooser라는 dialog생성
+        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);   //chooser속성 file,directory select할수잇고
+        chooser.setDialogType(JFileChooser.SAVE_DIALOG);                //open dialog방식
+        chooser.setFileFilter(new FileNameExtensionFilter("JDrawer file", "jdr"));  //JDrawer파일들이다, extension은 jdr 로 필터링
+        int value = chooser.showSaveDialog(null);   // dialog show
+        if( value != JFileChooser.APPROVE_OPTION) return;   //return버튼이 ok버튼이어야지
+        fileName = chooser.getSelectedFile().getPath();     //file이름 얻어오기
+        if (fileName.endsWith(".jdr") == false) {
+            fileName = fileName + ".jdr";
+        }
+        canvas.doOpen(fileName);
+    }

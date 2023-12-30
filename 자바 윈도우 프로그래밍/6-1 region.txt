@@ -1,0 +1,6 @@
+TwoPointFigure인 경우
+
+Figure의 x1,y1,x2,y2로 polygon을 만들어서 그 Figure의 dataMember로 저장
+
+MouseMove이벤트에서 find함수로 커서가 그 figure에 올라갓는지 판단해서 커서모양 바꾸기
+

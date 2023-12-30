@@ -1,0 +1,70 @@
+3주차 비주얼 프로그래밍 삼각함수 다항함수 원그리기
+
+삼각함수 속성
+주기함수 : f(x) = f(x-T) //주기마다 같은 값이 반복됨
+T: 주기(period)
+A: 진폭(amplitude) //높이
+B: 주파수(frequency) //얼마나 빨리 반복하느냐
+C: 위상차(phase difference) //왼,오른쪽으로 이동하게 하는것
+
+f(x) = A*sin(B*x - C)
+//A는 Y축(위아래로)의 폭이 넓거나 좁아짐
+//B값에 따라 주파수, C값만큼 전체그래프가 왼오른쪽으로 이동)
+
+합성함수 : 삼각함수끼리의 연산
+
+
+다항함수그리기
+3차함수:
+ex) (-2,0), (1,0), (3,0)을 지나는 3차함수
+y = (x+2)(x-1)(x-3)
+y = x^3 - 2x^2 -5x + 6
+y절편: x에 0넣은 값
+
+x축의 범위 : 정의구역(domain)
+y축의 범위: 치역(range)
+domain [-3,4]
+최대값,최소값 [18,24]
+
+원그리기
+극좌표계
+독립변수 theta(각)에 따라 방정식을 결정
+r = f(theta)
+x/r = cos
+=> r*cos(theta) = x(길이)
+y/r = sin
+=> r*sin(theta) =y(길이)
+(r*cos(theta), r*sin(theta) = (x,y)
+x,y값 증가시키며 점찍으면 원
+
+ex) 콘솔
+for(i = 0; i < 100; i++)
+x = (int)(RADIUS * Math.Cos(theta));	//RADIUS:반지름, thet:a 각도
+y = (int)(RADUS * Math.Sin(theta));
+screenBuffer[x, y] = "*";
+theta += step;	//step = 2*PI/100; // 2*PI 라디안 = 360도
+x += XORG;
+y += YORG;	//linear transformation_ 위치 이동
+for(i<100) print
+
+ex)윈도우
+step = 2*Math.PI/NDOTs;	//2파이라디안(360도) / 찍을 점 갯수
+for(i = 0; i < NDOTS; i++)
+x = (int)(RADIUS * Math.Cos(theta));
+y = (int)(RADUS * Math.Sin(theta));
+theta = theta + step;
+g.DrawEllipse(pen, x, y, 1, 1);
+
+
+ex)윈도우2
+위에서 반복문 전의 x, y와 그 다음 x, y를 잇는 선으로 그리는 방법
+
+ex) 다각형
+위 윈도우2 방법에서 NDOTS수를 원하는 n각형의 n으로 변경
+*
+sine그래프든 다항함수든 원그리기든 식을 만들고 일정횟수를 매크로로 찍고 일정 횟수만큼 반복해서 함수에 넣고 화면에찍고 반복시키는것
+*
+윈도프로그램에서 그리기 시작점 오른쪽부터 시계방향으로(아래로 내려가는 이유: 원래 그래프에서는 y값이 위로 증가하지만 윈도우프로그램에서는 y값이 아래로 증가하기때문)	
+***핵심
+윈도우프로그래밍에서 좌표값은 오른쪽, 아래로 증가
+Graphics객체가 중요하다

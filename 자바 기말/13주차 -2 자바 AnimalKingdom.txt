@@ -1,0 +1,33 @@
+13주차 -2 자바 animalkingdom
+
+자료추상화
+
+*RTTI (run time type indentification)(실행중에 type을 확인)
+ex) if (x instanceof Lion){}
+
+
+상속
+class Aminal{
+  protected String name;
+}
+
+
+동적바인딩
+// Object animals[] = new Object[5];
+ArrayList  <Animal> animlas = new ArrayList<Animal>();
+
+//Lion l = new Lion();
+Animal l = new Lion();
+
+abstract void eat();	//abstract class Animal{}
+
+animals.add(x);
+
+
+
+
+polymorphism
+
+
+
+

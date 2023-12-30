@@ -1,0 +1,32 @@
+비주얼 프로그래밍 4주차 윈도우소개
+
+윈도우:
+이벤트에 반응하는 사각형화면 일부분
+
+이벤트:
+사용자의 행동(마우스/키보드)에 의해 생성되는 정보를 기록한 구조체 데이터모음
+
+event queue: 이벤트 발생순서대로 처리
+
+
+윈도 프로그래밍 2가지업무
+1. 화면구성
+
+2. 이벤트 핸들링
+이벤트 등록(어떤 윈도/어떤 이벤트/어떤 함수)(3개의 관계를 명시)
+이벤트 핸들러 작성
+
+이벤트 등록과 관계되는 문법: Delegate(C에서는 function pointer)
+ex)
+delegate void SampleDelegate(int x , int y); //argument가 두개 있는 SampleDelegate라는 type 선언
+psvm{
+	SampleDelegate f = new SampleDelegate(add);	//위에 add함수가 정의돼있다 치고
+	SampleDelegate g = new SampleDelegate(sub);
+	f(10,20);
+	g(10,20);
+	SampleDelegate h;
+	h = f + g;	
+	h(10,20);		// 위 f호출;g호출한 결과가 나타남
+	h += new SampleDelegate(mul);	//도 가능함
+	h -= f;
+}

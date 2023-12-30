@@ -1,0 +1,64 @@
+StatusBar 구현
+
+<프레임 구성>
+상단 :
+타이틀바아래
+메뉴바아래
+툴바
+
+우측: 스크롤바
+
+하단: status 바
+
+<status bar>
+StatusBar(panel)안에 Box Layout 안에 TextField
+--------------------------------------------------------------------
+1. frame클래스에서 statusBar를 작업공간인 Container에 추가(Panel 붙인 곳_3-1Panel참고)
+ex) 
+Container container = new Container();
+StatusBar statusBar = new StatusBar();
+container.add(statusBar, "South");
+
+*container에 panel도 붙였었는데 panel과 statusBar의 위치분배하는 방법
+-> container.add(statusBar, 뒤에 "South"를 넣으면 하단에 위치시키겠다는 뜻,
+container.add(panelr, 뒤에 "Center"를 넣으면 중앙에 위치시키겠다는 뜻
+
+
+2. StatusBar 클래스생성
+-1. 이 클래스도 JPanel로 상속받음(import 똑같이 해줘야함)
+
+-2. 상태를 나타낼 JTextField 데이터멤버로 생성
+
+(아래부터 constructer에서 작업)
+-3. setLayout(new BorderLayout());	//panel의 layout 바꾸기 -defalut값은 flow layout
+-4. setBorder(BorderFactory.createEtchedBorder()); // panel의 경계선그리기(panel = statusBar)
+
+-5. JTextField 멤버 설정
+ex) 
+JTextField position = new JTextField("Position", 8);
+//instanciation _argument : 나타나는Text, column
+position.setEditable(false);	//보여주는 용도의 TextField이므로 입력불가능설정
+position.setHorizontalAlignment(JTextField.CENTER);	//Text Align
+
+-6. Box Layout Manager생성
+ex) Box box = Box.createHorizontalBox();
+
+4. Box에 JTextField 넣기
+ex) box.add(position);
+
+5. Box를 statusBar에 넣기
+ex) add(box, "West");	//box를 서쪽에 배치
+
+6. 기능구현
+-상황마다 다 다름, 원하는대로
+
+*2-4 setBorder() 함수 :
+BorderFactory 클래스
+-component의 경계선을 꾸며주는 역할을 하는 클래스
+ex)
+setBorder(BorderFactory.createEtechedBorder());
+//argument - border스타일종류_BorderFactory클래스 라이브러리에서 종류검색
+
+*2-6 Box layout manager
+--border layout manager
+-container안에 부속 component를 add할때마다 차곡차곡 쌓임, layout으로 위치를 관리

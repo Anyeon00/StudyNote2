@@ -1,0 +1,37 @@
+7주차 비주얼프로그래밍 pen, brush, rectangle
+
+Pen pen = new Pen(Color.Black, 1);
+pen.Width = 8;	//pen객체의 property를 이용해 변경도 가능 
+pen.DashStyle = DashStyle.Dot;	//Using System.Drawing.Drawing2D
+pen.StartCap = LineCap.Flat;
+pen.EndCap = LineCap.ArrowAnchor;	//시작점과 끝점의 모양
+pen.LineJoin = LineJoin.Bevel;	//선의 꺾이는 부분모양
+
+
+Brush brush = new SolidBrush(Color.Black); //칠할때, drawstring_글자배경
+Brush brush = new LinearGradientBrush(p1, p2, Color.Black, Color.White);	// p1, p2 는 포인트, 출발점~끝점사이에 색 그라데이션
+
+TextureBrush:
+Bitmap bmp = new Bitmap("window.bmp"); //이미지설정
+Brush brush = new TextureBrush(bmp); //이미지로 칠하기(bitmap 정의, 프로젝트폴더-bin-debug 에 이미지파일 놓기)
+g.FillRectangle(brush, ...);
+* 글자 안을 이미지로 채우기
+Font font = new Font("궁서체",40,FontStyle.Bold);
+g.DrawString("Hello World",font,brush,10,20);
+
+*brush쓰고 나면 garbage colloection해주기, 가능하면 pen도
+brush.Dispose();
+
+
+사각형그리기
+
+
+
+
+
+
+*Graphic 는 도화지,펜,브러쉬,지우개의 총집합
+펜은 선,윤곽
+브러쉬는 칠
+
+

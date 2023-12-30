@@ -1,0 +1,186 @@
+@@ 1차원배열, 2차원 배열, String 모두 c#과 자바 같음 @@
+(모두 shallow copy됨, 다만 String은 read-only로 인해 deep copy와 같은 결과)(자세한 내용은 c# string파일 참고)
+단, C#에서 2차원배열은 다른 형태가 하나 더 존재(이 아래에서 설명)
+
+1. 2차원배열 메모리 구성방식
+
+2. String type parameter passing시 shallow copy인지 deep copy인지 
+- c# string 메모 참고(shallow copy지만 read-only로 인해 deep copy효과처럼 보임)
+
+
+-----------------------------------
+[같은 점]
+
+namespace의 역할: 식별자(변수)(identifier)가 영향을 미치는 범위 지정
+
+<name-space> <class-name> <function-name>
+
+전역함수가 없음		//자바와 동일(class안에 선언)
+
+int등 기본형은 automatic allocation만 가능
+객체형(배열,구조체)는 dynamic allocation만 가능	//자바와동일
+
+
+!!! 1차원배열: length정보가 포함된 구조체로 이루어짐
+-parameter passing시: 자바와 c#같음
+(자바-shallow copy, c#-shallow copy)
+
+!!! 2차원배열: 
+- parameter passing시 : 자바와 c#같음
+(자바-shallow copy, c#-shallow copy)
+
+!!! String : 자바와 C#같음 (실제론 shallow copy지만 read-only 때문에 deep copy와 같은 결과)
+(c# String 메모 참고)
+
+
+
+
+[다른 점]
+
+- 자바는 클래스를 폴더(package)에 모아놓음
+c#은 클래스를 namespace에 모아놓음
+
+- visibility 안적으면 자바는 public, c#은 private
+
+- 함수이름 자바는 소문자로시작
+c#은 대문자로시작
+
+- 변수 정의 순서(사용후에 적어도 됨)
+
+- is연산자(변수의 type확인)
+int a; if (a is double){}
+
+- as연산자(type casting)
+
+- System.out.print() -> Console.Write()	  //println() -> WriteLine()
+- Console.Read(), Console.ReadLine()	// scanf
+
+- format문
+Console.WriteLine("a = {0}\n b = {1}", x, y);	
+//0은 parameter 첫번째 index, 1은 두번째 index, 즉 %d -> {0} 식으로 사용
+
+- System.exit() -> Environment.Exit()
+
+- for each문
+foreach(int x in arr){}	// arr은 container
+
+- Access Function (Property)
+: MS 문법 (get~(); , set~(); 대신에 쓰는 것)
+ex)클래스 정의
+int x;
+public int X{	//X는 property이름, 대문자로 써야함
+  get{ return x; }
+  set{ x = value; }	// value _정해져있는 문법
+}
+메인함수
+객체 tmp;
+int a = tmp.X	// get함수 사용예
+tmp.X = 100;	// set함수 사용예
+
+- indexer
+: 클래스안의 배열 객체의 data에 접근하는 
+ex) 클래스 정의
+int[ ][ ] m = {...};
+public int this[int i, int j]
+{
+  get
+  {
+    return m[i, j];
+  }
+  set
+  {
+    m[i, j] = value;
+  }
+}
+메인함수
+
+*String 클래스도 정의되어있음(get만)
+String x = "kim";
+sout(x[2]);
+
+- Constructer
+public Point()
+	: this(0, 0)	//아래 오버로딩한 constructer가 호출됨
+{ }
+public Point(int x, int y){
+  this.x = x;
+  this.y = y;
+}
+
+- Generic Class
+* Generic 클래스 Stack<Type>에서 데이터멤버 Type[ ] tArray를 초기화 할때
+: for(int i = 0; i < size; i++){
+    tArray[i] = default(T);	// 예약어 default 사용
+ }
+
+- 상속
+ex) 
+자바 : class Dog extends Animals
+C# : class Dog : Animals
+
+- 상속의 생성자에서 super()호출
+자바 : class Dog extends Animals{
+  public Dog(int x, int y, int z){
+    super(x, y);
+  }
+}
+C# : class Dog : Animals{
+  public Dog(int x, int y, int z){
+    : base(x, y)
+  }
+}
+
+- 상속의 메소드에서 super()호출
+public void move(int dx, int dy, int dz){	// argument가 다르므로 override는 아님
+  base.move(dx, dy);	// super.move(dx, dy);
+  m_z = dz;
+}
+
+- function override 방법
+: 꼭대기 함수에 virtual, 그아래 override한 함수에는 override 선언해주기
+ex)
+virtual public String toString(){}
+public override String ToString(){}
+
+
+
+- 2차원배열 : 두가지 형태 존재(하나는 자바와 같음)
+1. C#만의 방식 : 1차원배열에 row&col기록해놓고 2차원처럼 사용
+ex) instantiation & 사용
+int[ , ] x = new int[3,4];
+x[0,1] = 10;
+
+ex) parameter
+int getSum(int[ , ] a){~}
+
+int row = x.GetLength(0)
+int col = x.GetLength(1); 
+
+
+2. 자바와 같은 방식(가변배열)
+ex) instantiation & 사용
+int[ ][ ] y = new int[3][ ];	// new int[3][4] 로 쓰면 syntax error(자바는 괜찮음)
+for(int i = 0; i < 3; i++){
+  y[i] = new int[4];
+}
+y[0][1] = 10;
+
+ex) parameter
+int getSum(int[ ][ ] a){~}
+
+int row = y.Length;
+int col = y[0].Length;
+
+=> int와 char가 따로 존재하는 것처럼 2차원배열이 따로 두 종류 있다고 생각
+
+
+
+
+
+
+
+
+
+
+
+

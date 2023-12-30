@@ -1,0 +1,117 @@
+자바 기말 정리
+
+String class 함수들-10주차
+
+자료형들 parameter passing방식
+
+bitwise연산자들
+
+2003 2번문제
+ListNode p = new ListNode(); 가 여러번 실행되면
+래퍼런스 p를 새로 또 만드는게 아니라 기존의 레퍼런스 p를 재사용함
+
+객체 reference에 다른 객체reference를 assignment할때 shallow copy됨
+(즉, a = b를 하면 레퍼런스 a에 레퍼런스 b가 가리키는곳을 넣음(똑같이 가리키게함))	//shallow copy 이해(가리키는 곳의 주소값을 복사)
+
+객체 reference에 null을 할당하면 null을 가리킴
+
+2003 3번문제
+c.doingX(this); 에서 this가 c가 아님(당연함)
+
+2004 1번문제(5p)
+비트와이즈
+1111 >> 하면 맨뒤에 1은 사라짐 (다시 << 하면 0으로 나옴)
+0귀찮다고 안쓰지말고 다 쓰면서 하기
+
+2004 3번문제
+객체 레퍼런스에 = null 해줘야 null을 가리킴
+
+2007 2번문제 ***다시풀어보기
+-1)팁: 객체의 함수에서 나오는 this는 객체를 가리킴
+ex) f(){
+	myClass a = new myClass(this);
+}
+x.f();
+여기서 this는 x
+-2) 부모클래스와 자식클래스에 같은 변수명이 있어도 각각 생성,즉 부모 클래스의 int x, 자식클래스의 int x 별개로 취급
+-3) 자식클래스 레퍼런스로 호출한 함수가 부모클래스에 있을때 부모클래스의 변수 사용****
+
+2008 1번
+for문 탈출하는 부분(중괄호위치)잘보기...
+
+2009 3번
+111..111 -1
+111..110 -2 
+100..000 -2의31승
+011..111 2의31승-1
+000...001  
+000...000 0
+
+2019 1번
+*stack type이 object임
+integer reference가 boxing되어 쌓임
+출력할때 주의
+*오브젝트가 비어있어도 []로 출력됨 //기억안나면 다시풀어보기
+*출력할땐 주소순서대로 //자료구조마다 pop되는 방식이다름->혼란가능성
+
+2019 4번
+*데이터멤버 변수명과 메소드formal parameter 변수명과 같을때 이 메소드 안에서 사용되는 변수명은 formal parameter를 사용
+*메인메소드에서 객체생성시 인스턴스멤버 integer는 0, 외에는 null로 자동초기화
+
+2022 4번
+.length //배열이길이
+.length()	//문자열의 길이
+.size	//collection객체 크기
+
+
+
+*StringClass문제
+char CharAt(3); //3번째 index에 있는 char를 알아옴	
+int compareTo("str"); //String y랑 비교해서 큰지
+ex) if (x.compareTo("str") > 0){ ~}
+String concat("str"); //문자열 끝에 문자열 이어붙임
+boolean contains("a"); //이 문자열을 포함하고 있는가
+boolean endswith("str"); // 끝에 이런 문자열을 포함하고있느냐
+boolean startsWith("str"); // 앞에 이런 문자열을 포함하고 있느냐
+int indexOf('m') //어떤 char의 위치를 알아옴
+int lastIndexOf('m') //m의 위치를 뒤에서부터 찾기
+int lastIndexOf(int ch, int from) // from번째 index부터 앞으로 찾기
+int lastIndexOf(String str) //String에서 문자열 위치 찾기
+String replace('m','t') // 문자열에서 m을 t로 바꾸기
+String[] split("str") //StringTokenizer같은거
+ex)
+String x = "hello world mr. kim"
+String s[ ] = x.split(" ");
+sout(s[0]); // -> hello
+sout(s[1]); // -> world
+substring(3) //3번째 index부터 끝까지 반환
+substring(3,7); //3번째 index부터 7앞 index까지 반환
+trim() // 앞뒤의 공백문자를 다 없애줌
+
+2004 4번 8p
+? 
+StringBuffer b = new StringBuffer(s[i]);
+.setCharAt(index,String );
+첫번째 인자값 index의 값을 두번째 인자값으로 변경
+
+2006 2번 14p
+.substring.();
+인자가 1개인 경우 : 문자열에서 해당 인자번째 index부터 끝까지 문자data를 리턴
+ex) String str = "0123456789";
+str.substring(5) -> "56789"
+
+2014 3번 31p
+try블록에서 예외가 발생해서 catch블록으로 돌아가면 catch블록을 실행후 끝(다시 try블록으로 안돌아감)
+
+2014 4번 32p
+indexof(), lastIndexof()
+해당문자열이 처음 발견되는 인덱스값
+https://mine-it-record.tistory.com/124
+
+	
+?
+elementAt() -> 모든게 toString으로 반환됨
+
+
+
+ 

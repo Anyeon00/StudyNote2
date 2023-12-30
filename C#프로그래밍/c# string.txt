@@ -1,0 +1,62 @@
+C# String ( _자바와 동일)
+
+- length정보와 character array가 묶인 구조체
+
+- read-only(값 수정시 새로운 string객체가 instanciation되어 assignment됨)
+
+- 길이 정보: str1.length
+
+- 당연히 reference를 사용하므로 dynamic allocation이지만 기본형처럼 사용됨(deep copy) //read only때문에그런거임 수정필요
+
+- C랑 마찬가지로 "~"는 constant pool에 존재하는 문자열 상수, ' '는 charater상수
+
+- Equals()
+ex) str1.Equals(str2);  // 같으면 true
+ 
+- CompareTo()
+ex) str1.CompareTo(str2);  // 0이면 같음, 양수면 str1이 큼
+
+- Replace()
+ex) str1 = str1.Replace('e', 'o');
+
+- instanciation방법
+String a = "Hello";
+String b = new String('x', 5);	// x x x x x 가 저장됨
+String c = ""; // 문자열이 비어있는 String구조체를 가리킴
+String d;  // null이라서 출력시 compile error
+
+
+
+
+!!!!!!!!!??????
+String f = a; 시 
+Java는 deep copy처리됨
+C#(visual studio)도 deep copy처리됨
+
+교수님은 c#은 shallow copy된다고 설명하심(C# 5-4 15:30)
+
+[이유=> s1 = s2 후에 s1변경시 s2도 바뀌면 shallow copy,
+ 안바뀌면 deep copy라고 생각했는데(그래서 위에 deep copy처리됐다고 써놓음)
+ read-only특성때문에 s1은 변경값을 새로운 공간에 instanciation해서 받으므로
+ s2값은 s1의 garbage값을 가리키고 있으므로 shallow copy여도 안바뀌게 되는 것임]
+: 1. 그러면 자바는 deep copy로 작동한다고 메모해놨었는데 
+ 사실 그게아니고 c#과 같은 매커니즘이었는지 - ㅇㅇ
+  2. 그러면 parameter passing시는 어떻게 되는지 - assignment 경우와 같음(아마도)
+
+=> 결론은 String이 assignment문이나 parameter passing에서 deep copy와 같이 나타나는 건 맞음.
+ 근데 그 이유는 기본형처럼 처리해서가 아니라 read-only때문에 변경값을 
+ 새로운 객체에 instanciation해 저장해서 원래 값은 남아 있으므로 deep copy처럼 보이는 것임)
+ 
+ [자바와 C# String같음, 실제론 shallow copy지만 read-only 때문에 deep copy와 같은 결과]
+
+
+
+
+ 
+
+
+
+
+
+
+...?

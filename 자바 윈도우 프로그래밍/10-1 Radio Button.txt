@@ -1,0 +1,13 @@
+Radio Button
+
+ex)
+ButtonGroup group  = new ButtonGroup(); //radioButton을 묶어주는 그룹
+
+JRadioButton button = new JRadioButton("버튼이름");	//두번째 arguement로 true 입력시 radioButton들중 default로 선택되는 버튼으로 지정
+button.setBounds();	//버튼위치_layout 종류에따라
+add(button);	//판넬 생성자에서 추가
+group.add(button);		//radio button 그룹에 추가
+*그룹에 추가해야 radioButton선택시 하나만 선택되는 효과가 생김
+button.addActionListner( (evt) -> {	//anonymousObject이용한 lamdaExpression으로 기능구현
+	~
+}

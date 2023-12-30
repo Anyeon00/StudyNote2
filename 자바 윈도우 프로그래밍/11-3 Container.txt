@@ -1,0 +1,25 @@
+Container Class
+
+java.awt.Container
+
+Component안의 부속Component들을 Container객체안에 담아서 관리
+
+한 클래스를 상속받은 부속객체에 대해 일괄적으로 그 클래스의 메서드를 실행할때
+ex)안햇을때
+circle.draw();	//전부 Figure클래스 상속받은 객체
+line1.draw();
+line2.draw();
+line3.draw();
+line4.draw();
+
+ex)했을때
+ArrayList<Figure> children = new ArrayList<Figure>();
+children.add(circle);
+children.add(line1);
+children.add(line2);
+children.add(line3);
+children.add(line4);
+
+for(Figure ptr : children){
+	ptr.draw();
+}

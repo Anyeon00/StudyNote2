@@ -1,0 +1,48 @@
+MVC 모델
+
+
+특정한 형태의 클래스를 어떻게 배치한지 정리한것 : 디자인패턴
+MVC 모델 - 디자인패턴의 하나
+
+GUI(화면)를 갖는 소프트웨어를 만드는데 주로 사용
+
+Model, View, Controller 객체로 [역할분담]
+Model -> 응용 영역의 객체(런타임시 메모리상의 자료구조)(저장/로딩)	//자료구조에만 관심을 가져라
+View -> 모델의 내용을 화면에 출력 담당	//꾸미는데만 관심을 가져라
+Controller -> 이벤트 처리를 통한 모델의 상태 변화 담당	//이벤트핸들링에만 관심을 가져라
+
+키보드/마우스 -> Controller -> Model(메모리에) -> View -> 화면
+
+비주얼C++는 어플리케이션 전체를 mvc모델화 시켜서 처리
+자바는 컴포넌트차원에서 적용가능 
+ex) 
+View : JList, JTable, JTree
+Model : JListModel, JTableModel, TreeModel //서로 연계되어 작업
+
+---------------------------------------
+캡스톤-JDrawer에서 JTable ex)
+1. import javax.swing.table.*; import javax.swing.event.*;
+2. Dialog에서 JTable객체 instanciation
+3. JTable extends한 Table객체 inner class로 구현
+4. TableModel implements한 Model객체도 inner class로 구현 (JTable이 구현함수 호출함),(구현함수들은 TableDialog클래스 주석 참고)
+5. Table객체 Constructure에 super(new Model객체(view));		//argument _메인 판넬, 모델constructer argument도 메인판넬받게 설정
+*
+컴포넌트구조 : Dialog <- dialogPanel <- scrollPanel(Center), bottomPanel(South) &
+scrollPanel  <- JTable <- TableModel
+구현클래스 : 
+TableDialog extends JDialog{
+	static class FigureTableModel implements TableModel{}
+	static class FigureTable extends Table{}
+	static class DialogPanel extends JPanel{}
+}
+-----------------------------------------
+트리노드 : Object(논리적으로 표현하고자 하는 데이터) + Colloection객체
+JTree ex)
+
+* DefaultMutableTreeNode
+- 트리모델에 사용하는 트리자료구조 노드 만들때 사용하는 클래스
+(MyTreeNode 클래스 안만들고 Model클래스에서 바로 DefaultMutable instanciation해서 사용)
+
+*View에서 Model과 상호작용하는 함수 :
+updateUI();
+

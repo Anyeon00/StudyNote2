@@ -1,0 +1,9 @@
+c#
+
+기본형변수는 무조건 stack영역에서
+객체형변수(배열,구조체)는 무조건 힙영역에서
+
+? String의 경우 shallow copy되는지 deep copy되는지
+(자바는 동적할당되지만 처리는 기본형처럼 deep copy로 처리)
+
+visual studio에서만 작업가능(자바는 여러 editor에서 가능)

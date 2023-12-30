@@ -1,0 +1,6 @@
+5주차 비주얼프로그래밍 drawer 싸인그래프
+
+[다른 language로 짜는 것도 다 비슷하다]
+
+*자바할때
+Java API Document 항상 옆에 두고	

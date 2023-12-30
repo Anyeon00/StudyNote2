@@ -1,0 +1,32 @@
+10주차 -2 이차원배열
+
+dynamic allocation
+
+가변배열 가능
+
+C처럼 배열의 길이를 parameter로 넘겨줄 필요없음
+length가 배열자료구조에 포함되어있기 때문
+
+-3 행렬의 연산
+
+행렬의 곱(Matrix)
+앞의 행 x 뒤의 열
+a3x4  b4x2 -> c3x2가 나옴
+
+for(int i = 0; i < 앞의 행; i++){
+  for(int j = 0; j < 뒤의 열; j++){
+    for(int k = 0; k < 뒤의 행; k++){
+      c[i][j] += a[i][k]*b[k][j]; 
+}}
+
+ex)
+행렬1
+row: 점포위치
+col: 메뉴
+행렬2
+row: 메뉴
+col: 메뉴의 가격, 메뉴의 이윤
+결과
+row: 점포
+col: 가격, 이윤
+

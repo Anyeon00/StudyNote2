@@ -1,0 +1,135 @@
+15 tcp/ip server
+
+서버 ex)
+ip : 172.30,1.59
+port : 20, 80, 110 (port마다 제공 서비스가 다름)
+
+socket: 사용자와 서버와 연결(사용자 서버 양쪽 다 만들어줘야함)
+- 두개의 연결줄: inputStream(read), outputStrem(write)
+* 사용자입장에서 ouputStream이 서버입장에서 inputStream, 반대도 동일
+
+s = new socket(ip,100); // 요청할 곳 ip번호와 사용할 포트번호
+
+
+multi thread : 서버에서 socket마다 thread필요
+
+
+구조: 서버 - 포트 - server socket - while(client socket, thread)
+* 서버컴퓨터의 프로그램자체가 서버
+* 서버(프로그램)에 여러 포트(서비스)가 있으므로 포트도 thread객체임
+* 포트thread run()시 서버소켓 instantiation 후 
+while문 들어가서 사용자생길때마다 client socket과 thread객체 instantiation반복
+* 위 thread객체를 thread를 상속받은 객체로 구현, run()함수에 하는일 구현, 여기에 inputStream&ouputStream생성
+-------------------------------------------
+서버:
+[메인판넬]
+String myIP;	
+try{
+  InetAddress address = InetAddress.getLocalHost();
+  myIP = address.getHostAddress();	// 내컴퓨터 ip알아오기, 이시점에서 이 프로그램자체가 서버
+}  catch(Exception ex){}
+
+ServerRole server;	// 직접구현클래스(port를 구현함)
+public void actionPerformed(ActionEvent e){
+if(obj == start){
+  server = new ServerRole(this); // 이서버에 새로운 port개설, this로 mainpanel 버튼access
+  server.start();	// thread이므로 실행
+}else if(obj == stop){
+   server.closeSocket();  // socket을 close해야됨
+   server.stop();	// thread stop
+}else if(obj == ~){
+}
+
+[ServerRole클래스] // 새 port구현클래스
+class ServerRole extends Thread{
+  MainPanel wnd;  
+  ServerSocket listenerSocket;
+  HashMap<String,PrintWriter> writers; // client ip가 key, 해당소켓의 writer가 value
+  ServerRole(MainPanel serverWnd){
+     wnd = serverWnd; // 사용할 panel객체저장
+     writers = new HashMap<String,PrintWriter>();
+  }
+  public void run(){ // start버튼시
+     try{
+       listenerSocket = new ServerSocket(7000);  // 서버socket생성_port number는 7000으로
+       wnd.writeText("Server started ...");
+       wnd.writeText("port 7000 in" + wnd.myIP);
+       while(true){  // 이하반복
+         Socket client = listenerSocket.accept(); // 고객이 생기는지 지켜봄
+         String ip = client.getInetAddress().getHostAddress();	// 고객 ip받아옴
+         wnd.writeText("client" + ip + "is connected...");
+         wnd.addComboBoxItem(ip);	// comboBox에 고객ip추가
+
+         ClientService connection = new ClientService(client, writer, wnd); // 일처리하는 thread 생성(구현객체)
+         socket.start();
+       }
+     }catch (IOException ex){
+       sout(ex);
+     }
+  }
+  void closeSocket(){  // socket close
+    try{
+      listenerSocket.close();	
+    }catch (IOException ex){
+       sout(ex);
+     }
+}
+
+[Thread객체] // client생성시 thread생성
+class ClientService extends Thread{
+  Socket client;
+  HashMap<String,PrintWriter> writers;
+  MainPanel wnd;
+  ClientService(Socket client, HashMap<String,PrintWriter> writers, MainPanel wnd){
+     this.client = client;
+     this.writers = writers;
+     this.wnd = wnd;
+  }
+  public void run(){  // client와 실질적으로 일처리하는 부분(대화하는부분)
+    try{
+      BufferedReader  fromClient =
+        new BufferedReader(new InputStreamReader(client.getInputStream()));	
+      // 글을 주고받으므로 reader와 writer사용
+      // client socket에서 client의 InputStream을 받아옴(소켓의 받는구멍)
+   
+      PrintWriter toClient =
+        new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
+      // 글을 보내기 위해 client의 OutputStream을 받아옴(소켓의 보내는구멍)
+      // OutputStreamWriter는 character단위를 byte단위로 바꿔줌
+      // PrintWriter는 Client쪽으로보내는 println()함수를 사용할수 있게 해줌
+
+      // client가 누른 버튼에 따라 숫자가 다르게 옴, 숫자에 따라서 다른 일처리
+      int n;	
+      String s = fromClient.readLine();  // client로 부터 data를 받음
+      n = Integer.parseInt(s);
+      String ip = client.getInetAddress().getHostAddress(); // 화면출력을 위해
+
+      if(n == 1){	// client가 report버튼을 눌러서 "1"을 보낸 경우
+         String selling = fromClient.readLine();  
+         wnd.writeText(ip + " : " + selling);
+         toClient.println("Got it!");
+         toClient.flush();
+
+        fromClient.close();
+        toClient.close();
+        client.close();
+        return;
+      } else if(n == 3){  client가 connect버튼을 눌러서 "3"을 보낸 경우,  connect부분은 캡스톤15-3-final보고 마저정리필요
+        while(true){
+          writers.put(ip,toClient); // hashMap에 client IP 저장
+
+          String msg = fromClient.readLine();
+          if(msg.equals("-1")){ break; } // 종료하는 코드
+          wnd.writeText(ip + " : " + msg);
+        }
+        writers.remove(ip);	// 종료시 hashMap에서 IP remove
+       
+        fromClient.close();
+        toClient.close();
+        client.close();
+      } // enter키가 입력되면 TextField에 입력된 string갖고와서 출력후 상대에게 보내는 코드
+    } catch (IOException ex){
+      sout(ex);
+    }
+  }
+}

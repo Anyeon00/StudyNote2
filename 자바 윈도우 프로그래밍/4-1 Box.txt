@@ -1,0 +1,33 @@
+<마우스 눌렀을때>
+pBox = new Box();
+pBox.x1 = e.x
+pBox.x2 = e.x
+pBox.y1 = e.y
+pBox.y2 = e.y
+
+<드래그했을때>
+x1,y1 x2,y2 // x1,y1과 움직이기 직전의 x2,y2로 Background Color로 그리기(rubber banding)
+
+x2 = e.x	//마우스 움직이자마자 x2,y2에 마우스의 새 좌표값 받아오기
+y2= e.y
+
+x1,y1와 새로받은 x2,y2 로 그리기
+
+<마우스 뗐을때>
+pBox.x2 = e.x	//뗐을때 마우스 좌표값 받아오기  
+pBox.y2 = e.y
+
+x1,y1 x2,y2 로 마지막으로 그리기
+* 그릴때 x1, x2중 작은쪽 구해서 int minX에 저장(Math.min(a,b))
+, int width에 (x2 - x1) 절댓값 저장(Math.abs(a,b))
+ex) int minX = Math(pBox.x1, pBox.x2)
+, g.drawRect(minX, minY, width, height);
+
+-----------------------------------------------------------------
+<collection 객체에 저장시>
+- 눌렀을때 만들어진걸 객체에 넣어줌(저장)
+- paint event(화면이 갱신될때_창내렷다 올리거나할때)
+해당 판넬의 paintComponent이벤트핸들러에서 nBox(Collection객체에 저장된 Box갯수)만큼 반복해서 마우스뗐을때 그리는 코드 실행
+* minX,Y, width,height 구하는 코드부터,
+이때 x1의 참조객체는 콜렉션객체boxes의 i번째객체
+ex)int minX = Math(boxes[i].x1, boxes[i].x2);

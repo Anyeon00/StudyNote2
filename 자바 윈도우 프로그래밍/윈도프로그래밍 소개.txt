@@ -1,0 +1,53 @@
+비주얼 프로그래밍 4주차 윈도우소개
+
+[윈도우 프로그래밍]
+윈도우:
+이벤트에 반응하는 사각형화면 일부분
+
+이벤트:
+사용자의 행동(마우스/키보드)에 의해 생성되는 정보를 기록한 구조체 데이터모음
+
+event queue: 이벤트 발생순서대로 처리
+
+event -> event queue -> event dispatcher -> event handle
+
+[interface]
+멤버 함수 signature만 포함하는 특이한 클래스
+데이터 멤버 (X)
+함수바디 (X)
+ex) public void drink(); 만 있음
+
+목적: 어떠한 객체의 다양한 면을 표현하거나 서로 다른 객체들의 같은 면을 표현하기 위한 프로그래밍 도구 polymorphism
+
+-실체가 없기 때문에 직접 instanciation할 수 없음
+-class에서 interface 구현(반드시 override해야됨)
+-Dynamic binding
+ex)RemortControler rc = new TV();
+rc.volumeUp();	//interface RemortControler에 있는 함수
+-Collection 객체 (같은 동작을 하는 여러 객체들을 Collection객체에 넣어 collection객체의index.interface함수로 dynamic binding)
+
+[윈도 프로그래밍 절차]
+1. 화면구성 - sequential programming(트리 구조)
+2. event handler 작성&등록 - Listener interface 구현
+
+[어떤 윈도]에서 [어떤 이벤트]가 발생하면 [어떠한 이벤트핸들러]가 호출되어야 하는가를 명시
+
+자바 컴포넌트(=윈도) 라이브러리 종류
+AWT -옛날버전
+Swing -업그레이드버전
+둘다 사용
+-> import javax.swing.*; import java.awt.*; import java.awt.event.*;
+
+[이벤트핸들러 프로그래밍 절차]
+1. 사용 목적을 정한다.
+2. 사용 목적에 맞는 이벤트핸들러 함수를 찾는다.
+3. 그 이벤트핸들러가 포함된 인터페이스를 찾는다.(자바에서는 사용목적에 따라 그룹핑 되어 있음)
+4. 그 인터페이스를 구현한다.
+5. 인터페이스를 구현한 객체를 생성하여 해당되는 윈도 객체에 등록한다.
+
+[위 4에서 이벤트핸들러 구현 방법]
+1. interface를 구현하는 독립된 객체를 이용하는경우//그 interface함수 만을 위한 객체
+2. 윈도 객체가 interface를 구현하는 경우
+3. WindowAdapter를 상속받는 독립된 객체를 이용하는 경우
+4. anonymous object를 이용하여 interface를 구현하는 경우
+5. anonymous object를 이용하여 WindowAdapter를 구현하는 경우

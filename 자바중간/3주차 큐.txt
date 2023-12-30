@@ -1,0 +1,12 @@
+0317 3주차 자바
+
+Queue: FIFO 방식으로 운영되는 collection 객체
+
+C#에서는 인큐, 자바에서는 add 또는 일반적으로 enter
+디큐,remove, leave
+front, rear
+처음엔 front,rear index모두 0, add하면 rear증가, remove하면 front증가
+remove할때 비어있는가 체크(rear와front같은지)
+add할때 꽉찼는가(rear가 배열크기와 같은지)
+
+?add하고 ++하는거랑 ++하고 add하는거랑 상관없는지

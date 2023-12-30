@@ -1,0 +1,35 @@
+Dialog 부속품
+
+Dialog
+-modal dialog
+-modaless dialog
+
+JLabel
+JTextField
+JComboBox(dropdown button)
+JButton
+
+JLabel(x1 :) 옆에 JTextField(입력칸)
+JComboBox(검색해보셈)
+JButton(OK버튼, Cancel버튼)
+
+
+ex)
+<FigureDialog 클래스만들기>
+JDialog 상속받기
+이하 FigureDialog클래스 주석 참고*
+
+
+<MouseActionListner함수 implement>
+FigureDialog dialog = new FigureDialog("Figure Dialog");
+//Modal Dialog를 사용하려면 flag변수 사용해서 true면 modal, false면 modaless
+            dialog.setModal(true);  
+            dialog.setVisible(true);
+
+
+
+
+*setResizable(false); //사용자가 크기조정불가
+
+----------------------------------------------
+못작성한거 (위치값 매크로등) 필요하면 5-2 Dialog동영상 보고 작성하기 아니면 프린트

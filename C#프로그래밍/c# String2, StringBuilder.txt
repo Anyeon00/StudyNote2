@@ -1,0 +1,66 @@
+c# String2, StringBuilder
+
+String2
+
+* String Class의 property :
+String.Empty == "" // 빈 문자열
+
+
+* 
+String a = "abcde";
+String b = "defgh";
+
+a.Length // String a의 길이 _5
+
+a.substring(2)	// index 2부터 끝까지 return _cde	//java랑 같음
+a.substring(2,2)	// index 2부터 2글자 return _cd	//java랑 다름
+
+a.Equals(b)  // a와 b가 같으냐 _false
+
+a.CompareTo(b)	// a와 b크기 비교
+// 같으면 0, a>b = 양수, a<B = 음수
+* lee 가 lean보다 더 큼
+
+a.EndsWith(b)  // 끝이 같은지
+
+a.IndexOf('e')	// char가 index몇번째인지 _4	//또는 존재하는지
+
+a.Remove(3,2)	// index 3번째부터 2개 삭제해라 _"abc"
+
+String p = (String)a.Clone();	// 객체복사(Object type이므로 형변환)
+
+String f = String.Format("{0} and {1}", a, b);
+// 를 String으로 만들어라 _"abcde and defgh"
+
+a.Trim()	// 양쪽 공백제거
+
+a.Split(separators);
+ex)
+char[] separators = new char[1];
+separators[0] = ' ';	 // 공백 ' '을 separators로 지정
+String[] st = a.Split(separators);  // char 배열에 separator로 쓸 char들이 들어 있음, 모두 적용됨
+// String a를 separators기준으로 쪼개서 문자열 st에 저장
+
+x = int.Parse(y);	// Integer.ParseInt
+x = doubleParse(y);  // Double.Parsedouble
+
+
+StringBuilder( JAVA - StringBuffer)
+: 수정이 가능한 String
+
+ex)
+StringBuilder b = new StringBuilder("hello");
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+1주차 비주얼 프로그래밍 Sin그래프 세로
+
+삼각함수 각도단위 : 라디안
+360도 = 2파이 라디안
+(180도 = 파이 라디안)
+
+*incremental development(점진적인 개발과정)
+컴파일가능한 상태를 유지하면서 논리적인 순서로 살을 붙여나가며 개발하는 방식
+
+linear trasformation(선형변환)
+y = f(x)
+폭을 늘리기 위해서
+y1 = a * f(x)
+y축으로 이동하기 위해서
+y2 = a * f(x) + b
+
+
+2주차 Sin 가로
+
+x축으로 대칭시키기 위해서
+y3 = (-1)*a*f(x) + b
+
+윈도프로그래밍
+
+Graphic 객체
+: event함수의 argument인 PaintEventArgs 객체를 참조하는 변수를 통해 생성
+실행함수에 Graphics 레퍼런스 arguments로 넣고, Pen객체(Color,Black)
+
+
+Graphic객체의 Draw들어가는 메소드 반드시 써보기
+호 : drawArc(펜, orgX,orgY, 가로폭,세로폭, 시작각도,끝각도)
+3차원곡선? : DrawBezier(펜, 시작포인트, 중간 포인트, 중간포인트2, 끝포인트)
+더이상한곡선? : DrawlosedCurve(펜, 포인트배열) //Point start = new Point(100,100);
+선 : DrawLine(펜, 시작x좌표,시작y좌표,끝x좌표,끝y좌표)
+DrawLine(펜, 첫번째포인트, 두번째포인트)
+이어진 선 : DrawLines(펜, 포인트배열) //Point[] point = ...f1참고
+이어진 곡선 : DrawCurve(DrawLines의 arguments와 같음)
+타원 : DrawEllipse(펜, 시작x좌표,시작y좌표,width, height);
+아이콘 : DrawIcon(펜, 시작x좌표,시작y좌표); // Icon icon = new Icon("SampIcon.ico");
+이미지 : DrawImage(DrawIcon과 arugments같음) //Image image = Image.FromFile("SampImag.jpg");
+DrawImage(image, 포인트배열) //지정된 크기로
+부채꼴 : DrawPie(펜, 시작x, 시작y, 원너비,높이, 시작각도, 끝각도)
+다각형 : DrawPolygon(펜, 포인트배열)
+사각형 : DrawRectangle(펜, 시작x,시작y,너비,높이)
+텍스트 : DrawString(String, font, brush, x좌표, y좌표); //Font font = new Font("Arial",16), SolidBrush drawBrush = new SolidBrush(Color.Black);
+
+마징가제트그리기: 가로 1000, 세로600으로
+
+

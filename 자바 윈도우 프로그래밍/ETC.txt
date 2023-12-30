@@ -1,0 +1,11 @@
+버튼에 따라 동작
+public void actionPerformed(ActionEvent event){	//actionListener
+	if(event.getSource() == button1){
+	} else if(event.getSource() == button2){
+	}
+}
+
+조건하에 이벤트핸들러(조작) 정지
+ex) removeMouseListener(this);
+다시 재개
+addMouseListener(this);	//argument - 이벤트핸들러 실행 판넬

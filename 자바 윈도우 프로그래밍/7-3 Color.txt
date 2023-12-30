@@ -1,0 +1,6 @@
+라이브러리에 JColorChooser
+
+static Color showDialog(Component component, String title, Color initialColor){}
+: Color 선택
+ex)
+Color color = JColorChooser.showDialog(null, "Color Chooser", Color.black);	

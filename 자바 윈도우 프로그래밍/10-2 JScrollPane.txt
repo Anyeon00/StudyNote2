@@ -1,0 +1,29 @@
+Panel에 ScrollBar 장착하기
+
+JScrollPane 객체 이용하기
+
+ex) 프레임 Constructure에서
+JPanel mainPanel = new JPanel();	//메인판넬
+JScrollPane sp = new JScrollPane(mainPanel);	//스크롤바 판넬에 메인판넬 붙임
+container.add(sp);		//프레임의 Container에 스크롤바 판넬 붙임
+
+ex) mainPanel Constructure에서
+setPreferredSize(new Dimension(3000,1500)); 
+//스크롤바 생성을 위한 Panel의 논리적크기 명시
+
+
+*page down/page up키로 스크롤바 조종하는 기능만들기
+ex) 프레임 Constructure에서
+sp.registerKeyboardAction(new ActionListener(){		//lamdaExpression으로 써도됨
+		public void actionPerformed(ActionEvent evt){
+			//스크롤바 가지고 오기
+			JScrollBar scrollBar = sp.getVerticalScrollBar();
+			/스크롤바 움직이기
+			scrollBar.setValue(scrollBar.getValue() + 100);
+	}
+	, KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_DOWN, 0) //pageDown키 눌럿을때
+	, JComponent.WHEN_IN_FOCUSED_WINDOW); //현재 작업중인창
+
+*
+registerKeyboardAction(함수, key, 조건);	//argument 3개
+: 어떤조건하에서 어떤키가눌러졋을떄 어떤함수를 호출해라

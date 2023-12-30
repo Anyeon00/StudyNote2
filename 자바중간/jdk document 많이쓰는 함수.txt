@@ -1,0 +1,42 @@
+jdk documentation 많이쓰는 함수
+
+<object>클래스
+
+-tostring()	//특정객체의 상태값을 출력하기위함
+
+-equals()	//어떤객체와 어떤객체가 같은지
+ex)if(p.equals(q)){} -> return true//or false, p와 q의 reference값 비교
+그 레퍼런스의 내용을 비교하기위해서(자료구조등) 오버라이딩 필요
+
+
+ex) 같은 큐 두개 만들었을때
+Queue q = new Queue();
+Queue p = new Queue();
+add(10);
+add(20);
+add(30);
+
+public boolean equals(Object o){
+	//RTTI : Run Time Type Identification 실제로 큐인지 확인하는것
+	if (o.getClass().get.Name()equals("Queue")) return false;	//객체 o의 object에서의 이름이 큐인지
+	/*RTTI 두번째방법
+	if (!(o instanceof Queue)) return false;		//이걸 주로 써야함
+
+
+	Queue second (Queue)o;	//typecasting 해줘야함
+	
+	if(front != second.front) return false;
+	if(rear != second.rear) return false;
+	if(s.length != second.s.length) return false;
+	for(int i = front; i < rear; i++){
+		if(s[i] != second.s[i]) return false;
+	}
+	return true;
+}
+
+
+
+
+2개가 제일 중요
+
+-clone

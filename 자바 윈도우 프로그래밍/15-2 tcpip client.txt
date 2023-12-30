@@ -1,0 +1,66 @@
+15 tcp/ip client
+
+구조: 메인판넬 - 버튼 클릭시 Socket생성(받는구멍,보내는구멍)
+* 그 버튼의 actionPerformed함수에서 socket 생성후 inputStream,outputStream열고 하는일 구현
+
+아래 예의 경우 button에 따라 chatting을 하거나 그냥 data를 보내거나 기능이 다름
+------------
+client
+[메인판넬]
+String ipAddress = "localhost";
+
+public void actionPerformed(ActionEvent e){
+  String cmd = e.getActionCommand();	// 어떤버튼이 눌렷는가
+  String ipAddress = buttonPanel.getIpAddress(); // textField에서 서버측ip를 입력해놔야함
+
+  if(cmd.equals("Report")){	// report 버튼을 누른 경우
+    try{
+      Socket client = new Socket(ipAddress,7000);  // 소켓생성
+      writeText("Reporting...");
+      BufferedReader fromServer = // 받는 구멍
+          new BufferedReader(new InputStreamReader(client.getInputStream()));
+      PrintWriter toServer = 	// 보내는 구멍
+          new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
+
+      // Report버튼의 경우 1을 보냄
+      toServer.println("1");	// 1을 보냄
+      toServer.flush();	// 보내고 flush()해줘야 정보가 전달됨 (물내리기)
+
+      // TextField에서 입력받은 data를 보냄
+      // String s = 어디판넬.getTextField();
+      // toServer.println(s);
+      // toServer.flush();
+
+
+      // 서버가 보낸 data 출력
+      // String t = fromServer.readLine();
+      // writeText("[Server says] " + s);
+
+      toServer.close();
+      fromServer.close();
+      client.close();
+
+    }catch(IOException ex){ sout(ex); }
+  }else if(cmd.equals("Query")){
+ 
+  }else if(cmd.equals("Connect"){  // connect부분은 캡스톤15-3-final보고 마저정리필요
+// 채팅버튼을 누른 경우
+// 보내고 받는게 동시야 되야하므로 2개의 thread필요
+// this도 하나의 thread이므로 thread 1개만 더 추가
+    try{
+      Socket client = new Socket(ipAddress,7000);  // 소켓생성
+      writeText("Reporting...");
+      BufferedReader fromServer = // 받는 구멍
+          new BufferedReader(new InputStreamReader(client.getInputStream()));
+      PrintWriter toServer = 	// 보내는 구멍
+          new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
+
+
+      toServer.close();
+      fromServer.close();
+      client.close();
+
+    }catch(IOException ex){ sout(ex); }
+  }else if(cmd.equals("Close"){
+  }
+}

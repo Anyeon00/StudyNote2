@@ -1,0 +1,41 @@
+자바 4-1 입출력
+
+입력: //scanf사용 못함 (c언어처럼 &a 같은 레퍼런스가 없기 때문)
+1. 한 문자 읽기
+2. 한 줄 읽기(buffer reader_ String으로 읽음)
+3. scanf처럼 type별로 읽기(Scanner)
+*2,3번 정도만 기억하면 됨
+
+1.
+InputStreamReader in = new InputStreamReader(System.in); // System.in은 키보드로부터 입력받겠다는 뜻
+while(true){
+	try{
+		char ch = (char)in.read();	//read()함수
+		if(ch=='\n') break;		//enter키를 읽으면 break, 한줄 단위로 읽기때문
+	} catch(IOException ex){	//라이브러리함수에 오류가 생겻을떄 처리
+	}
+}
+
+2.
+String buffer;
+BufferedReader in = new BufferReader(new InputStreamReader(System.in));
+//System.in_키보드로 입력, InputStreamReader_에 BufferReader의 기능을 추가함
+//InputStream은 한글자한글자(물방울), BufferReader은 String(컵)
+
+while(true){
+	try{
+		buffer = in.readLine();
+		if(buffer.length()==0) break;	//빈 라인을 입력하면 break
+		System.out.println(buffer);
+	} catch(IOException ex){
+	}
+}
+*StringTokenizer
+
+3.
+Scanner sc = new Scanner(System.in);
+
+s = sc.next();	//String으로 읽기
+c = s.charAt(0);	//String s의 첫번째 문자
+i = sc.nextInt():	//Integer로 읽기
+*입력 데이터의 양식이 미리 정해져있는경우 사용할수 있음

@@ -1,0 +1,25 @@
+panel을 붙이는데
+그냥붙이면 frame자체에 붙임
+
+작업공간(content pane) 에 붙여야함
+*작업공간은 frame의 부속객체로 존재
+ex)
+Container container = this.getContentPane();	//Content Pane생성
+container.setBackground(Color.red);
+JPanel p = new JPanel();	//Panel생성(실제로는 JPanel 상속받아 만든 객체사용)
+container.add(p);	//Content pane container에 Panel p붙이기
+
+
+Panel 클래스
+- extends JPanel
+- paint event (화면이 나타나거나 갱신될때마다 호출되는 핸들러)
+, 너무 많이쓰이는 핸들러라 인터페이스로 존재하지 않고 상위클래스에 존재해서 오버로딩으로 사용
+public void paintComponent(Grahpics g){
+	super.paintComponent(g);	//이 핸들러 사용시 반드시 써줘야함
+}
+
+사각형 그리기
+-이 프로젝트같은 경우는 이벤트핸들러를 1번방식으로 구현
+-Panel클래스가 implements
+-Panel의 Constructer에 이벤트핸들러의 인터페이스 등록
+-이벤트핸들러함수 내에서 Graphics g = getGraphics();
