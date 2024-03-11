@@ -72,9 +72,9 @@ Graphics객체가 중요하다
 
 
 삼각함수내용 요약
-x/r = cos(theta)
+cos(theta) = x/r
 => r*cos(theta) = x(길이)
-y/r = sin(theta)
+sin(theta) = y/r
 => r*sin(theta) = y(길이)
 (r*cos(theta), r*sin(theta) = (x,y)
 theta에 따라 x, y가 결정됨
