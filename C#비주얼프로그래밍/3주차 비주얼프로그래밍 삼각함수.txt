@@ -30,9 +30,9 @@ domain [-3,4]
 극좌표계
 독립변수 theta(각)에 따라 방정식을 결정
 r = f(theta)
-x/r = cos(theta)
+x/r = cos
 => r*cos(theta) = x(길이)
-y/r = sin(theta)
+y/r = sin
 => r*sin(theta) =y(길이)
 (r*cos(theta), r*sin(theta) = (x,y)
 x,y값 증가시키며 점찍으면 원
@@ -52,8 +52,8 @@ step = 2*Math.PI/NDOTs;	//2파이라디안(360도) / 찍을 점 갯수
 for(i = 0; i < NDOTS; i++)
 x = (int)(RADIUS * Math.Cos(theta));
 y = (int)(RADUS * Math.Sin(theta));
-g.DrawEllipse(pen, x, y, 1, 1);
 theta = theta + step;
+g.DrawEllipse(pen, x, y, 1, 1);
 
 
 ex)윈도우2
@@ -68,21 +68,3 @@ sine그래프든 다항함수든 원그리기든 식을 만들고 일정횟수�
 ***핵심
 윈도우프로그래밍에서 좌표값은 오른쪽, 아래로 증가
 Graphics객체가 중요하다
-
-
-
-삼각함수내용 요약
-cos(theta) = x/r
-=> r*cos(theta) = x(길이)
-sin(theta) = y/r
-=> r*sin(theta) = y(길이)
-(r*cos(theta), r*sin(theta) = (x,y)
-theta에 따라 (x,y)가 결정됨
-
-ex)윈도우에서 원 그리기
-step = 2*Math.PI/NDOTs;	//2파이라디안(360도) / 찍을 점 갯수 = 한 스텝의 각도
-for(i = 0; i < NDOTS; i++)
-x = (int)(RADIUS * Math.Cos(theta));
-y = (int)(RADUS * Math.Sin(theta));
-g.DrawEllipse(pen, x, y, 1, 1);
-theta = theta + step;
