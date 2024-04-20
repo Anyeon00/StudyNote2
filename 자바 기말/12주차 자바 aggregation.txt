@@ -1,0 +1,50 @@
+12주차 자바 aggregation
+
+부속품들의 조합으로 객체를 구성하는 방식
+
+MatrixWithNames
+
+class String array
+
+String[];
+add()
+get()
+readData()	
+
+class MatrixreadNames
+
+Stringarray rowNames
+Stringarray colNames
+
+----------------------------------------
+Array Vector *ArrayList* LinkedList
+
+ArrayList 사용함수 signature들
+
+ArrayList이용해서 StringArray 클래스 implemantation 다시 쓰기(inheritance해서)
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

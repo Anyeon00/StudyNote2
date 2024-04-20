@@ -1,0 +1,44 @@
+MatrixWithNames 메인프로그램 a4 한 페이지만 제출,기말고사때 지참
+강의자료 17의 메인 프로그램과 유사한 프로그램 작성하기
+*맥도날드,성적,판매원 이 세개 수업시간에 한거는 하지말기
+12주-2 MatrixWithNames활용 플립 참고
+
+12주플립 aggregation 참고메모
+main프로그램 실행시 출력 질문 정리
+->
+1. 제품종류 몇가지? 3
+1-1. 제품명칭?
+a
+b
+c
+2. 각 제품단가?
+100
+200
+300
+3. 판매원 몇분? 2
+3-1 판매원 이름?
+kim
+lee
+4. 판매원이 판 각 제품수량?
+kim/a : 1
+kim/b : 2
+kim/c : 3
+lee/a : 3
+lee/b : 2
+lee/c : 3
+-------------------------------------------------
+판매원, 제품, 단가
+판매원 제품/ 제품 단가/ 판매원 수익
+-------------------------------------------------
+매트릭스를 상속받아서 
+매트릭스와 string array2개를 포함한 새로운 클래스: MatrixWithNames
+class MatrixWithNames extends Matrix{
+  StringArray rowNames;
+  StringArray colNames;
+  MatrixWithNames(int row, int col){
+  super(row,col);
+  rowNames = null;
+  colNames = null;
+}
+---------------------------------------
+한번 실행시켜보기

@@ -1,0 +1,14 @@
+14주차 자바 bitwise operation
+
+기억장소를 절약하기위해서
+
+&: bitwise and
+|: bitwise or
+^: hat(exclusive or) -> 같으면 0 다르면1
+~: tild -> 0과 1 서로 바꿈
+
+boolean여러개대신 int에 boolean을 저장하는경우
+read: if(x & 1<<5){} else{}	//0이냐 0이아니냐, 5가 bit위치(정보위치)
+write 1 : x = x | (1<<n)
+write 0 : x = x & ~(1<<n)
+

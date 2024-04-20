@@ -1,0 +1,36 @@
+9주차 자바 static member function, String객체
+
+static member function : 객체와 bound되어있지 않은 function (this가 없다)_시험문제에 this뺀 함정 출제
+일반 memeber function : 객체와 bound되어있는 function (this가 있다)
+*객체지향프로그램에서는 일반 memberfucntion으로 사용하는게 관습
+
+
+ComplexNumber a, b, c;
+
+1. c = a.add(b);
+
+2. c = ComplexNuber.add(b);	// ComplexNumber클래스에서 static 함수로 만들어줌
+
+*static function은 객체와 bounding되어있지 않음
+
+
+
+String객체
+
+c언어->
+문자상수,문자상수배열은 stack area 에, 문자열 상수는 Data area constant pool(read only)에 할당
+끝에 null이 추가됨
+ex)
+char x[10] = {'k', 'i', 'm'};
+-> 배열 index0 = k, index1 = i, index2 = m, index3 = \0
+*null때문에 9칸밖에 사용못함
+
+자바:
+\0사용안함
+동적할당(구조체형태)
+따라서 크기문제없음(overflow)
+assignment가능(기본형처럼사용)
+read only, 수정불가_새로운객체생성
+끝에 null character자리가 없음, length가 저장되어있기떄문
+장점: 안정성
+단점: 속도/기억장소

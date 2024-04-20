@@ -1,0 +1,57 @@
+0324 자바
+
+circula queue
+rear++하고 넣기
+front ++하고 빼기
+배열 한칸 비워놓기(비어있는지 확인하기위해?)
+-> 배열 한칸 비워진상태가 꽉찬상태, rear +1 == front
+rear%
+
+-------------------------------------------------------
+specification(명세): 사용자입장에서 반드시 알아야 될 사항
+specification부터 만들기, 신텍스에러 안나게
+implementation(구현): 공급자가 반드시 알아야 될 사항
+API: application programming interface
+
+------------------------------------------------------
+Queue(){
+	s= new int[Max];
+	front = rear = 0;
+}
+boolean isEmpty(){
+	if (front == rear) return true;
+	return false;
+}
+private boolean isFull(){
+	if (rear+1 == front) return true;
+	return false;
+}
+public String toString(){???
+	String val = "front: " + front + "rear: " + rear + "[";
+
+	for(int i = 0; i < s.length; i++){
+		val = val + s[i];
+		if(i < s.length-1) s = s + " ";
+	}
+	return val;
+}
+void add(int x){
+	if (isFull){
+		System.exit(-1);	//이거 시험문제
+	}
+	rear = (rear +1) % Max;
+	s[rear] = x;
+}
+int remove(){???
+	if (isEmpty()){
+		return -1;
+	}
+	front = (front +1 % Max;
+	return 
+
+
+
+========================
+c언어로도 짜보기
+네이버 sulden lion에 c++ growablearray로 큐 만들기
+_데이터스트럭쳐(목록)

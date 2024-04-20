@@ -1,0 +1,26 @@
+자바 3주차 플립 
+3-1 간단스택
+
+colloection 객체: 상자
+ex) 버스는 승객을 담는 colloection객체
+ex) 스택도 collection 객체
+
+Stack: LIFO방식의 자료구조
+stack 목적: 최근순으로 과거의 역사를 기록하기위함
+서비스: push, pop
+자료구조: 배열, growable array, linked list
+push(),pop(),top
+
+int[ ] x; ( x = new int[5])
+-> 배열을 가리키는 레퍼런스(포인터) : 포인터값이므로 스택영역에 할당
+-> int x[10]; 같은 문법은 틀림_자바는 배열이 곧 구조체이므로 배열을 선언하는것 자체가 잘못됨
+			_automatic allocation불가 dynamic allocation만 가능
+-> 배열(크기포함하여)선언시 c언어와 같은 형태의 배열에 index0앞에 length가 포함됨	
+
+
+3-2 명세와 구현
+
+프로그램작성시
+0. 메인함수에서 사용할 함수를 먼저 쓰고나서 함수내용 작성
+1. specification을 확정(컴파일가능하게, 함수이름으로써 사용법을 정의_명세)
+2. implementation을 수행(함수내용 작성)

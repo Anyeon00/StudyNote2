@@ -1,0 +1,79 @@
+첫해 -4번
+1. this : 해당 객체를 가리킴
+2. function().function(); 함수를 순서대로 호출(실행)
+3. bitwise연산자
+| : or_같으면 같음, 다르면 1 true
+& : and_같으면 같음, 다르면 0 false
+^ : 같으면 0, 다르면 1
+~ : 01 모두 반대로
+
+2004 4번 8p
+? 
+StringBuffer b = new StringBuffer(s[i]);
+.setCharAt( , );
+첫번째 인자값 index의 값을 두번째 인자값으로 변경
+
+2006 2번 14p
+.substring.();
+인자가 1개인 경우 : 문자열에서 해당 인자번째 index부터 끝까지 문자data를 리턴
+ex) String str = "0123456789";
+str.substring(5) -> "56789"
+
+2006 3번 15p
+static 으로 선언된 변수라 객체간 공유하는걸 모르고 각자 적용인줄알고 틀림
+
+2008 4번 23p
+반복문 끝까지 하나하나 해보기
+`
+
+2013 4번 27p
+2차원배열 생성방식 : 1차원배열부터 할당해주고 각 칸에 2차원배열을 할당해줌
+ex) int[][] s = new int [9][ ]; 
+s[0] = new int[3]; 
+s[1] = new int[5]; 이런식으로 할당 가능
+즉, 2차원배열이 직사각형으로 안만들질수도 있음
+
+s.length 는 레퍼런스갯수의 length 즉, s[9][8]에서 9를 의미
+s[0].length 는 0번에 붙은 배열이 length
+
+2014 1번 29p
+if문 안에서 생성된 변수 if문끝나도 유지됨(당연한거)
+
+int배열을 함수 파라미터로 넘기면 레퍼런스가 shallow copy되어 
+참조하는 메모리를 공유함
+
+2014 3번 31p
+try블록에서 예외가 발생해서 catch블록으로 돌아가면 catch블록을 실행후 끝(다시 try블록으로 안돌아감)
+
+2014 4번 32p
+indexof(), lastIndexof()
+해당문자열이 처음 발견되는 인덱스값
+https://mine-it-record.tistory.com/124
+
+2015 2번 34p
+StringBuffer = new StringBuffer();	//String형 자료구조
+.append(" ");	//문자열추가
+.setCharAt(1,'x'); //1번쨰 index값을 x로 치환
+https://mag1c.tistory.com/73
+
+2015 4번 36p
+?
+elementAt() -> 모든게 toString으로 반환됨
+
+2017 4번 40p
+String sum = s + "="; 에서 String은 문자배열 객체이므로 s가 객체를 가리키는 reference라 생각해서 s를 sum에 shallow copy하려 했음 하지만 shallow copy를 하는게 아님
+이유 1. reference는 맞지만 기본형 variable type과 기본형이 아닌 type으로 나눠생각했을때 String은 기본형은 아니지만 기본형처럼 쓰임, 이 경우 기본형처럼 아는것과 같이 assignment문에서 메모리가 따로 할당됨
+2. String S = "2"; String Y; Y = S; 에서 L value에 S가 toString되어 return되어 나온 게 할당됨 -> reference값으로 사용되는게 아님 -> 따라서 shallow copy되지 않음
+결론 : String은 assignment문이나 parameter passing에서 기본형처럼 쓰임
+(* 추가내용: 위에 내용 정확하지않음, 대학-3학년-c#프로그래밍-c# string파일 참고)
+
+
+
+
+*4번문제 정답
+97[2121212121]
+
+*이너static클래스
+-> 예를들어 stack클래스를 만든 경우 stack클래스 안의 모든 클래스와 메소드가 stack클래스와 바인딩되어있음(스택클래스와 연결되어있음)
+하지만 메인메소드가 포함되어있는 클래스에서 메인메소드 밖의 클래스나 메소드들은 바인딩되어있지 않기때문에 메인메소드에서 사용하기 위해 static을 붙여줘야함(바인딩해주는것)
+* static 변수와 static클래스는 개념이 다름, 다시말해 static 클래스는 메인메소드가 포함된 클래스안에서 public으로 선언하는것과 비슷함, static변수는 객체간에 공유하는 변수에 사용
