@@ -1,7 +1,0 @@
-자바 4-3 플립 Tokenizer
-
-evaluation rule:
-1. operand(피연산자)는 무조건 스택에 push
-2. operator(연산자)의 경우 2개 pop한 후에 결과값을 push
-
-token: 기본 단위
