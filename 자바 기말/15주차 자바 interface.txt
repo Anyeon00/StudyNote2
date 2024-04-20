@@ -1,9 +1,0 @@
-15주차 자바 interface(시험x)
-
-인터페이스:
-어떤 사물의 다양한 면 혹은 여러 사물들의 공통적인 면을 표현하기 위한 추상화 도구
-
-1. Comparable interface를 구현한 객체class생성
-2. Comparable x = 그 객체;
-3. x.compareTo(y);로 사용
-
